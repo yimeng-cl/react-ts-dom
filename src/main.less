@@ -1,0 +1,11 @@
+@import "~antd/dist/antd.css";
+@import "~@cffe/h2o-design/lib/style/index.less";
+
+//  MARK: 本地  scrollbar的样式被 hyper-form的样式覆盖，内部拿到的变量是undefined，导致颜色没有，本地需要单独设置样式
+::-webkit-scrollbar {
+  background-color: #7fffd4a0;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #71cf9d;
+  border-radius: 6px;
+}

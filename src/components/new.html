@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html,
+    body {
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.5715;
+      color: #000;
+    }
+
+    .cfprinter-page {
+      position: relative;
+      outline: none;
+      white-space: break-spaces;
+      overflow-wrap: break-word;
+    }
+
+    .cfprinter-content-container {
+      line-break: loose;
+    }
+
+    .emr-doc-signature-img {
+      vertical-align: middle;
+      border-style: none;
+    }
+
+    .cf-emr-structure-element-brace-space-wrapper {
+      display: none !important;
+    }
+
+    .sona-editor-table td .emr-ant-picker-panel-container {
+      display: none;
+    }
+
+    .sona-editor-table-tool-col,
+    .sona-editor-table-tool-row {
+      display: none;
+    }
+
+    .cf-emr-doc-diagnosis-placeholder {
+      display: none;
+    }
+
+    .cf-emr-select-wrapper {
+      display: none;
+    }
+
+    .cf-emr-select-wrapper .emr-ant-select-dropdown {
+      display: none;
+    }
+
+    .cf-emr-date-picker-wrapper {
+      display: none;
+    }
+
+    .cf-emr-date-picker-wrapper .emr-ant-picker-dropdown {
+      display: none;
+    }
+
+    img {
+      vertical-align: middle;
+    }
+
+    body>div {
+      margin: 0 !important;
+    }
+
+    body>div.sona-editor {
+      margin: 0px auto !important;
+    }
+
+    .cf-emr-structure-element-label-bolder {
+      font-weight: bolder;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    .cf-emr-editor .cf-emr-structure-element-label {
+      font-weight: bolder;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    input,
+    button,
+    select,
+    optgroup,
+    textarea {
+      margin: 0;
+      color: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      line-height: inherit;
+    }
+
+    [data-sona-element="page-header"]+.sona-editor-table-wrapper,
+    [data-sona-element="page-header"]+.sona-editor-table {
+      margin-top: 7px;
+    }
+
+    .cf-emr-marriage-history {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cf-emr-marriage-history .reset-link {
+      display: none;
+    }
+
+    .cf-emr-marriage-history .reset-link::after {
+      position: absolute;
+      top: 28px;
+      left: 12px;
+      display: inline-block;
+      width: 0px;
+      height: 0px;
+      content: '';
+      border-top: 12px solid #00b7eb;
+      border-right: 8px solid transparent;
+      border-bottom: 0px;
+      border-left: 8px solid transparent;
+    }
+
+    .cf-emr-birth-history {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cf-emr-birth-history .reset-link {
+      display: none;
+    }
+
+    .cf-emr-birth-history .reset-link::after {
+      position: absolute;
+      top: 28px;
+      left: 12px;
+      display: inline-block;
+      width: 0px;
+      height: 0px;
+      content: '';
+      border-top: 12px solid #00b7eb;
+      border-right: 8px solid transparent;
+      border-bottom: 0px;
+      border-left: 8px solid transparent;
+    }
+
+    .cf-emr-menstrual-history {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cf-emr-menstrual-history .reset-link {
+      display: none;
+    }
+
+    .cf-emr-menstrual-history .reset-link::after {
+      position: absolute;
+      top: 28px;
+      left: 12px;
+      display: inline-block;
+      width: 0px;
+      height: 0px;
+      content: '';
+      border-top: 12px solid #00b7eb;
+      border-right: 8px solid transparent;
+      border-bottom: 0px;
+      border-left: 8px solid transparent;
+    }
+
+    .cf-emr-image-insertor-element {
+      text-align: center;
+      outline: none;
+    }
+
+    .cf-emr-image-insertor-element.inline {
+      display: inline-block;
+    }
+
+    .cf-emr-image-insertor-element.block {
+      display: block;
+    }
+
+    .cf-emr-image-insertor-element.block.left {
+      text-align: left;
+    }
+
+    .cf-emr-image-insertor-element.block.center {
+      text-align: center;
+    }
+
+    .cf-emr-image-insertor-element.block.right {
+      text-align: right;
+    }
+
+    .cf-emr-image-insertor-element .image-wrap {
+      position: relative;
+      display: inline-block;
+      width: 250px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .cf-emr-image-insertor-element .image-wrap .image {
+      width: 100%;
+      height: auto;
+      padding: 0px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .cf-emr-image-insertor-element .image-wrap .image.selected {
+      border-color: #1f8bff;
+    }
+
+    .cf-emr-image-insertor-element .image-wrap .image.top {
+      vertical-align: top;
+    }
+
+    .cf-emr-image-insertor-element .image-wrap .image.middle {
+      vertical-align: middle;
+    }
+
+    .cf-emr-image-insertor-element .image-wrap .image.bottom {
+      vertical-align: bottom;
+    }
+
+    .cf-emr-resize-layer {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      display: none;
+      cursor: pointer;
+    }
+
+    .cf-emr-resize-layer.active {
+      display: block;
+    }
+
+    .cf-emr-resize-layer .resize-mask {
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      z-index: 9999;
+      display: none;
+      background-color: transparent;
+    }
+
+    .cf-emr-resize-layer .resize-mask.active {
+      display: block;
+    }
+
+    .cf-emr-resize-layer .anchor {
+      position: absolute;
+      z-index: 9;
+      display: block;
+      width: 6px;
+      height: 6px;
+      background-color: #25b863;
+      border: 1px solid #25b863;
+    }
+
+    .cf-emr-resize-layer .left-top {
+      top: 0px;
+      left: 0px;
+      cursor: nwse-resize;
+      border-right-color: #fff;
+      border-bottom-color: #fff;
+    }
+
+    .cf-emr-resize-layer .right-top {
+      top: 0px;
+      right: 0px;
+      cursor: nesw-resize;
+      border-bottom-color: #fff;
+      border-left-color: #fff;
+    }
+
+    .cf-emr-resize-layer .left-bottom {
+      bottom: 0px;
+      left: 0px;
+      cursor: nesw-resize;
+      border-top-color: #fff;
+      border-right-color: #fff;
+    }
+
+    .cf-emr-resize-layer .right-bottom {
+      right: 0px;
+      bottom: 0px;
+      cursor: nwse-resize;
+      border-top-color: #fff;
+      border-left-color: #fff;
+    }
+
+    .cf-emr-disease-info-element {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .cf-emr-disease-info-element.left {
+      text-align: left;
+    }
+
+    .cf-emr-disease-info-element.right {
+      text-align: right;
+    }
+
+    .cf-emr-disease-info-element .text-wrap {
+      display: table-cell;
+    }
+
+    .cf-emr-disease-info-element .date-text-wrap {
+      text-align: left;
+    }
+
+    .cf-emr-disease-info-element .title-text-wrap {
+      text-align: center;
+    }
+
+    .cf-emr-page-header-element {
+      position: relative;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .cf-emr-page-header-element .page-header-img-wrap {
+      text-align: center;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .cf-emr-page-header-element.with-bottom-line {
+      border-color: #333;
+    }
+
+    .cf-emr-page-header-element .page-header-subtitle {
+      display: table;
+      width: 100%;
+    }
+
+    .cf-emr-page-header-element .page-header-subtitle div {
+      display: table-cell;
+    }
+
+    .cf-emr-block-selected {
+      display: none;
+    }
+
+    .cf-emr-editor {
+      position: relative;
+    }
+
+    .cf-emr-editor-container {
+      display: flex;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .cf-emr-editor-page {
+      position: relative;
+      /* Center the "page". */
+      background: white;
+      border: 1px #ededed solid;
+      border-radius: 1px;
+      /* The "page" should cast a slight shadow (3D illusion). */
+      box-shadow: 0 0 5px #dfe1e3;
+    }
+
+    .cf-emr-editor-margin-marker {
+      position: absolute;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #aaa;
+    }
+
+    .cf-emr-editor-margin-marker.marker-top {
+      margin-top: -20px;
+      border-top-color: transparent;
+    }
+
+    .cf-emr-editor-margin-marker.marker-bottom {
+      margin-bottom: -20px;
+      border-bottom-color: transparent;
+    }
+
+    .cf-emr-editor-margin-marker.marker-right {
+      margin-right: -20px;
+      border-right-color: transparent;
+    }
+
+    .cf-emr-editor-margin-marker.marker-left {
+      margin-left: -20px;
+      border-left-color: transparent;
+    }
+
+    .sona-editor-table-wrapper {
+      position: relative;
+    }
+
+    .sona-editor-table {
+      box-sizing: border-box;
+      margin: 0px;
+      word-break: normal;
+      table-layout: fixed;
+      border-spacing: 0px;
+      border-collapse: collapse;
+    }
+
+    .sona-editor-table tr {
+      position: relative;
+      margin: 0px;
+      height: 20px;
+    }
+
+    .sona-editor-table td {
+      position: relative;
+      word-break: break-all;
+      vertical-align: top;
+      padding-top: 4px;
+      border: 1px solid #000;
+      white-space: pre-wrap !important;
+    }
+
+    .sona-editor-table.no-border {
+      border: none;
+    }
+
+    .sona-editor-table.no-border tr td {
+      border: none;
+    }
+
+    .sona-editor-table-no-style {
+      border: none;
+    }
+
+    .sona-editor-table-no-style td {
+      border: none;
+    }
+
+    .sona-editor-table-tool-hidden {
+      display: none;
+    }
+
+    .sona-editor-table-tool-col {
+      position: absolute;
+      top: -12px;
+      left: 0px;
+      z-index: 5;
+      height: 12px;
+      font-size: 0px;
+      cursor: pointer;
+      background-color: #fff;
+      border-right: 1px solid #dfdfdf;
+    }
+
+    .sona-editor-table-tool-col-item {
+      position: relative;
+      box-sizing: border-box;
+      display: inline-block;
+      height: 12px;
+      background: #f2f3f5;
+      border: 1px solid #dfdfdf;
+      border-width: 1px 0 1px 1px;
+      border-bottom: none;
+    }
+
+    .sona-editor-table-tool-row {
+      position: absolute;
+      top: 0px;
+      left: -12px;
+      z-index: 5;
+      width: 12px;
+      cursor: pointer;
+      background-color: #fff;
+      border-bottom: 1px solid #dfdfdf;
+    }
+
+    .sona-editor-table-tool-row-item {
+      position: relative;
+      width: 12px;
+      background: #f2f3f5;
+      border: 1px solid #dfdfdf;
+      border-width: 1px 1px 0 1px;
+      border-right: none;
+    }
+
+    .sona-editor-table-tool-selected {
+      background-color: #0689f3cc;
+      border-color: #0689f3cc;
+    }
+
+    .sona-editor-table-tool-del {
+      background-color: #ff4d50bf;
+      border-color: #ff4d50bf;
+    }
+
+    .sona-editor-table-delete-icon {
+      position: absolute;
+      z-index: 20;
+      padding: 1px 2px;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #e2e4e6;
+    }
+
+    .sona-editor-table-plus-icon {
+      position: absolute;
+      line-height: 1;
+      cursor: pointer;
+      background-color: #fff;
+    }
+
+    .sona-editor-table-row-move-line {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+      z-index: 20;
+      width: 100%;
+      height: 1px;
+      cursor: row-resize;
+      transition: all 0.1s;
+    }
+
+    .sona-editor-table-col-move-line {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+      z-index: 20;
+      width: 1px;
+      height: 100%;
+      cursor: col-resize;
+      transition: all 0.1s;
+    }
+
+    .cf-emr-image-editor-4-me .emr-ant-modal-body {
+      padding-top: 0px;
+      padding-bottom: 10px;
+    }
+
+    .cf-emr-image-editor-4-me .emr-ant-tabs-content-holder {
+      height: calc(75vh - 70px);
+      margin-bottom: 8px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .cf-emr-image-editor-4-me .emr-ant-row {
+      height: 100%;
+    }
+
+    .cf-emr-image-editor-4-me .config-edit-left {
+      border-right: 1px solid #ebebeb;
+    }
+
+    .cf-emr-me-canvas-4-edit {
+      height: 100%;
+    }
+
+    .cf-emr-me-canvas-4-edit .preview-title {
+      height: 32px;
+      font-weight: bold;
+      line-height: 32px;
+    }
+
+    .cf-emr-me-canvas-4-edit .preview-canvas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: calc(100% - 32px);
+      overflow: auto;
+      background-color: #f7f7f7;
+    }
+
+    .cf-emr-me-canvas-4-edit .preview-canvas>svg {
+      font-size: 16px !important;
+      background-color: #fff;
+    }
+
+    .cf-emr-select-wrapper {
+      position: absolute;
+      left: 0px;
+      visibility: hidden;
+    }
+
+    .cf-emr-date-picker-wrapper {
+      position: absolute;
+      left: 0px;
+      visibility: hidden;
+    }
+
+    .cf-emr-checkbox-group {
+      position: relative;
+    }
+
+    .cf-emr-checkbox-group.grid-layout {
+      display: inline-block;
+      width: 97%;
+      vertical-align: middle;
+    }
+
+    .cf-emr-checkbox-group.grid-layout .cf-emr-checkbox-list-wrap {
+      display: grid;
+    }
+
+    .cf-emr-checkbox-group.grid-layout .cf-emr-checkbox-list-wrap>* {
+      display: inline-block;
+      margin-left: 0 !important;
+    }
+
+    .cf-emr-checkbox-group.grid-layout .cf-emr-checkbox-config-wrap {
+      min-width: 192px;
+    }
+
+    .cf-emr-checkbox-group.inline-layout {
+      display: inline;
+    }
+
+    .cf-emr-checkbox-group.inline-layout .cf-emr-checkbox-config-wrap {
+      min-width: 24px;
+    }
+
+    .cf-emr-checkbox-group .cf-emr-checkbox-config-wrap {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      left: 0px;
+      display: none;
+      height: 27px;
+      padding-bottom: 2px;
+      margin-top: -27px;
+      margin-right: -2px;
+      margin-left: -2px;
+      background-color: rgba(97, 157, 215, 0.75);
+      border: 1px solid #619dd7;
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
+    }
+
+    .cf-emr-checkbox-group .cf-emr-checkbox-config-wrap .config-item {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 3px 3px 0 0px;
+    }
+
+    .cf-emr-checkbox-group .cf-emr-checkbox-config-wrap.inline .config-item:not([data-type='inline-layout']) {
+      display: none;
+    }
+
+    .cf-emr-radio-group {
+      position: relative;
+      display: inline-block;
+    }
+
+    .cf-emr-radio-group.grid-layout {
+      display: inline-block;
+      width: 97%;
+      vertical-align: middle;
+    }
+
+    .cf-emr-radio-group.grid-layout .cf-emr-radio-list-wrap {
+      display: grid;
+    }
+
+    .cf-emr-radio-group.grid-layout .cf-emr-radio-list-wrap>* {
+      display: inline-block;
+      margin-left: 0 !important;
+    }
+
+    .cf-emr-radio-group.grid-layout .cf-emr-radio-config-wrap {
+      min-width: 192px;
+    }
+
+    .cf-emr-radio-group.inline-layout {
+      display: inline;
+    }
+
+    .cf-emr-radio-group.inline-layout .cf-emr-radio-config-wrap {
+      min-width: 24px;
+    }
+
+    .cf-emr-radio-group .cf-emr-radio-config-wrap {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      left: 0px;
+      display: none;
+      height: 27px;
+      padding-bottom: 2px;
+      margin-top: -27px;
+      margin-right: -2px;
+      margin-left: -2px;
+      background-color: rgba(97, 157, 215, 0.75);
+      border: 1px solid #619dd7;
+      border-bottom: none;
+      border-radius: 5px 5px 0px 0px;
+    }
+
+    .cf-emr-radio-group .cf-emr-radio-config-wrap .config-item {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 3px 3px 0px 0px;
+    }
+
+    .cf-emr-radio-group .cf-emr-radio-config-wrap.inline .config-item:not([data-type='inline-layout']) {
+      display: none;
+    }
+
+    .cf-emr-structure-element {
+      position: relative;
+      cursor: default;
+    }
+
+    .cf-emr-structure-element-validation-error {
+      color: #ff1825;
+      caret-color: rgba(0, 0, 0, 0.85);
+    }
+
+    .cf-emr-structure-element-show-editable-border-bottom {
+      display: inline-block;
+      min-width: 15px;
+      padding: 0 5px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    .cf-emr-structure-element-show-editable-border-bottom .cf-emr-structure-element-placeholder {
+      color: #fff;
+    }
+
+    .cf-emr-structure-element>[contentEditable] {
+      display: inline-block;
+    }
+
+    .cf-emr-structure-element-placeholder {
+      font-style: normal;
+      font-weight: normal;
+      color: #000;
+      text-decoration: none;
+      white-space: pre-wrap;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.333;
+    }
+
+    .cf-emr-structure-element-hidden {
+      display: none !important;
+    }
+
+    .cfprinter-page .emr-ant-picker-dropdown {
+      display: none !important;
+    }
+
+    .cfprinter-page .emr-ant-select-dropdown {
+      display: none !important;
+    }
+
+    .cf-emr-doc-diagnosis {
+      display: inline-block;
+      margin: 0 0.5px;
+      color: rgb(0, 0, 0);
+    }
+
+    .cf-emr-doc-diagnosis .cf-emr-doc-diagnosis-value-container {
+      display: flex;
+      flex-direction: column;
+      color: rgb(0, 0, 0);
+      vertical-align: middle;
+      flex: 1;
+    }
+
+    .cf-emr-doc-diagnosis .cf-emr-doc-diagnosis-label {
+      font-weight: bolder;
+      color: rgb(0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .cf-emr-doc-diagnosis .cf-emr-doc-diagnosis-label::after {
+      content: '：';
+    }
+
+    .cf-emr-doc-diagnosis .cf-emr-doc-diagnosis-info {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .cf-emr-doc-diagnosis .cf-emr-doc-diagnosis-item {
+      display: flex;
+      flex-direction: row;
+      color: rgb(0, 0, 0);
+    }
+
+    .operation-inventory-list-table {
+      border-collapse: collapse;
+    }
+
+    .operation-inventory-list-table td {
+      border: 1px solid;
+      border-collapse: collapse;
+    }
+
+    .emr-doc-score-select {
+      position: relative;
+      margin: 0 0.5px;
+      cursor: pointer;
+    }
+
+    .emr-doc-score-calculation {
+      margin: 0 0.5px;
+      cursor: pointer;
+    }
+
+    .cf-emr-structure-element-selected {
+      ouline: none !important;
+    }
+
+    .cf-emr-score-number {
+      position: relative;
+      cursor: default;
+    }
+
+    .emr-doc-version-show {
+      margin-bottom: 2px;
+      color: #000;
+      text-align: right;
+    }
+
+    .emr-doc-version-show-item {
+      display: inline-block;
+      margin-left: 16px;
+    }
+
+    .cf-emr-disease-info-element .width-10em {
+      width: 10em
+    }
+
+    .cf-emr-disease-info-element .width-8em {
+      width: 8em
+    }
+
+    /* mark 打印时需覆盖原有样式, 原有样式名发生改变会影响到打印样式 mark */
+    body {
+      overflow: auto;
+      font-family: "SimSum", "宋体-简", "宋体";
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
+
+    /* 新版打印没有包裹 cfprinter-page，这个样式用于保证打印时的  可以正确换行 */
+    .print-wrapper {
+      white-space: break-spaces;
+    }
+
+    .sona-editor {
+      background: #fff;
+    }
+
+    .cf-emr-checkbox-config-wrap,
+    .cf-emr-radio-config-wrap {
+      display: none !important;
+    }
+
+    [data-sona-element] {
+      white-space: pre-wrap;
+    }
+
+    .sona-editor-table {
+      min-width: 100%;
+      font-size: inherit;
+    }
+
+    body {
+      font-size: 14px;
+      line-height: 1.5715;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="emr-doc-diff-root sona-editor" data-sona-editor="true"
+    style="width: 210mm; min-width: 210mm; max-width: 210mm; min-height: 297mm; padding: 12.7mm 19mm; position: relative; outline: none; white-space: break-spaces; overflow-wrap: break-word; zoom: 1.1; line-break: loose; font-size: 14px; line-height: 1.5715; display: block; margin: 0px auto 56px;">
+    <div data-slate-node="element" data-sona-element="page-header" print-define="top">
+      <div class="emr-doc-version-show" contenteditable="false"></div>
+      <div class="cf-emr-page-header-element with-bottom-line">
+        <div class="page-header-img-wrap" contenteditable="false"><img
+            src="http://hbos-emr.oss-cn-hangzhou-yzzheyi-d01-a.ops.it.com/c2f-file/hbos-emr/1687750081543/2021_03_23_10_26_49_uUChQ32NHigqCYZ7IJbTQK_ (2-1).png"
+            alt="页头" style="width: 407px; height: 90px;"></div>
+        <div data-slate-node="element" data-sona-element="paragraph" style="text-align: center; word-break: break-all;">
+          <span style="text-align: left; font-size: 21.3px; font-weight: bold;">特殊检查及特殊治疗知情同意书</span>
+        </div>
+        <div data-slate-node="element" data-sona-element="block" class="cf-emr-block page-header-subtitle">
+          <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+            <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="input"
+              id="patientInfo.patientName" title="" data-code="DE02.01.039.00"><span
+                class="cf-emr-structure-element-label-bolder" contenteditable="false">姓名：</span><span class=""
+                style="margin: 0px;"><span style="text-align: left;">测试小二</span></span></span><span
+              style="text-align: left;">﻿</span>
+          </div>
+          <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+            <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="input"
+              id="patientInfo.recordNo" title="" data-code="DE01.00.001.00.01"><span
+                class="cf-emr-structure-element-label-bolder" contenteditable="false">病历号：</span><span class=""
+                style="margin: 0px;"><span style="text-align: left;">2201358793</span></span></span><span
+              style="text-align: left;">﻿</span>
+          </div>
+          <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+            <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="input"
+              id="patientInfo.inpatientDeptName" title="" data-code="DE08.10.026.00"><span
+                class="cf-emr-structure-element-label-bolder" contenteditable="false">科室名称：</span><span class=""
+                style="margin: 0px;"><span style="text-align: left;">切换测试产科病房(庆春)</span></span></span><span
+              style="text-align: left;">﻿</span>
+          </div>
+          <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+            <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="input"
+              id="patientInfo.inpatientWardName" title="" data-code="DE08.10.054.00"><span
+                class="cf-emr-structure-element-label-bolder" contenteditable="false">病区：</span><span class=""
+                style="margin: 0px;"><span style="text-align: left;">6B-12</span></span></span><span
+              style="text-align: left;">﻿</span>
+          </div>
+          <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+            <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="input"
+              id="patientInfo.BedNo" title="" data-code="DE01.00.026.00"><span
+                class="cf-emr-structure-element-label-bolder" contenteditable="false">床号：</span><span class=""
+                style="margin: 0px;"><span style="text-align: left;">002</span></span></span><span
+              style="text-align: left;">﻿</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-slate-node="element" data-sona-element="paragraph"
+      style="text-align: center; line-height: 2; word-break: break-all;"><span
+        style="text-align: left; font-weight: bold;">碘对比剂使用知情同意书</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">一 使用碘对比剂目的：碘对比剂能增加病变组织与正常组织的密度差别，从而提高病变的显示率并进一步提高诊断的准确性。 ﻿</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">二
+        签署同意书依据：目前我院使用的碘对比剂为国家正式批准使用产品，安全可靠，但有极少数患者可能会发生不良反应。根据中华医学会放射学分会、中国医师协会放射医师分会《对比剂使用指南》和浙江省卫生厅放射质控规定，使用碘对比剂需签署碘对比剂知情同意书。&ensp;&ensp;</span>
+    </div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">三 有关碘对比剂注意事项：&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;"> 1　请告知医生有无既往碘剂不良反应史、过敏史、甲状腺功能亢进、严重肾功能不全、哮喘病史，以明确是否存在绝对禁忌症和相对禁忌症。&ensp;&ensp;</span>
+    </div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;"> 2　使用碘对比剂可能出现不同程度的不良反应：&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;⑴
+        轻度不良反应：咳嗽、喷嚏、一过性胸闷、结膜炎、鼻炎、恶心、呕吐、全身发热、荨麻疹、瘙痒、血管神经性性水肿等。&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;⑵ 重度不良反应：喉头水肿、反射性心动过速、惊厥、震颤、抽搐、意识丧失、休克等，甚至死亡或其他不可预测的不良反应。</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;⑶ 迟发性不良反应：注射碘对比剂1小时至1周内有能出现各种迟发性不良反应，如恶心、呕吐、头痛、骨骼肌肉疼痛、发热等。</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;⑷ 注射部位可能出现碘对比剂漏出，造成皮下组织肿胀、疼痛、麻木感，甚至溃烂、坏死等。&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;⑸ 如使用高压注射器，存在注射针头脱落、局部血管破裂的潜在危险。&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;⑹ 注射部位及全身可能出现其他不能预测的不良反应。&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;⑺
+        肾功能不全、糖尿病肾病、血容量不足、心力衰竭、使用肾毒性药物、非甾体类药物和血管紧张素转换酶抑制剂类药物、低蛋白血症、低血红蛋白血症、高龄(年龄&gt;70岁)、低钾血症、副球蛋白血症等情况下容易发生对比剂肾病。&ensp;&ensp;</span>
+    </div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;"> 3&ensp;&ensp;患者有甲状腺功能亢进，目前正在治疗期，经评估可使用碘对比剂。</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">四&ensp;&ensp;针对不良反应我们采取的防范及处理措施：&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;&ensp;&ensp;严格把握碘对比剂使用指证；备好必要的急救药品、物品；</span><span
+        style="text-align: left; font-weight: bold;">检查完30分钟内患者不得擅自离开检查点</span><span
+        style="text-align: left;">，加强病情观察等；如出现不良反应给予对症治疗；如出现气道痉挛，喉头水肿或休克等严重不良反应立刻急救并通知临床医师积极抢救。&ensp;&ensp;</span></div>
+    <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;"><span
+        style="text-align: left;">&ensp;&ensp;&ensp;&ensp;本人已阅读、理解并同意以上内容，同意使用碘对比剂并承担使用带来的风险。同时，我也理解虽然医院对可能出现的各种情况做了各种防范措施，但仍可能出现上述不良反应。</span>
+    </div>
+    <div data-slate-node="element" data-sona-element="block" id="uTWqa26YlrfxalpNAHI1oG" class="cf-emr-block">
+      <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+        <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="input"
+          id="ummja3pfSNdWmcRFnjU0o0" title=""><span class="" style="margin: 0px;"><span
+              style="text-align: left;">谈话医生</span></span></span><span style="text-align: left;">﻿﻿:</span><span
+          data-slate-node="element" data-sona-element="blend-signature" id="uTp918Ud6O0-Kdw_YaVXtj" title=""><span
+            class="" style="margin: 0px;"><span contenteditable="false"><span><img class="emr-doc-signature-img"
+                  src="data:image/jpg;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAADNklEQVR42u2cwa3CMAxAy5c4wwJIbAAnuCDBJrABV24wDHfYAMECjMAo+b9I+b+/tKmd2E7aGikHAkmTvNixnTSZMeZLU3dTpoOggGUblGUmTwqn44AVsgIG13W73YwC7jDgPmuEXqjoFCDHen5v1uBivc/n06QM93K5GAXcEkmyz1ssFiZG+zIuOL6NDCkPKXM+n991r9drU24vp9ag7gf0v6yAJ5OJkQbsKlcHkxrwYDAInuRU0p5xqqb7/W4wEG3earUiAwyRUC7LnXsJiQrYR40X8ygA2++5REm7ZRI2AuR/WSyw3IAhgy3lc0PXeWxbkgCcm/yuda+ugy6pw0yiGHBtnT8fA5nYrQXs6hCnBLsGajwek1vNdZoDOrF93aNogJsG2uYPh8MPwFZyQwFjlgmuqFld38vaidMtzKThNs1iDsAusNJhUWj7kgKMMWygaooKMHcww2fpaWoftJ0igLGSMZ/PK/Nfr9dHx33bslwuf8vaiFXMuHMZcFFLhWgUdsCQyJCrs1XGDwXgmDFpSJ9dGg8DnRUwxEoMsSJjqNJYgEM0YjQjq6rB0+kUbHxIqFUOyKfTCQS46rm73a4y/3q9vvP3+z1aiskB20C7j9s0m82SABwiOZvNxhyPR5BUQlyopokoDhgyaFCplwRMpRohFryP++gqs91uTVKAMSFLyfh4bnFThysxy49vCNP5myRgn00H7vAp1G8PMYQggENCmM7dslhWZNOAhEhTiHRh/fxy2dzIkgbsVOGSaxumfMhZ5jKA0Wj0W9fhcECv9z67VD6AQyz92gkitffLdSbJ53lYFY1JuRXtq/Ipju981J3i6UgfwPk69Hg8jK+GkfStqwBTHcAra6wk3y6UsqA5nkcJ2Ff7/etbnwFzSDEWMOUJj8q+9RVwMeIWGzD1OLQCsM+ZrFReToMaeXWx514Alty7rdogkNqAoQRs99STBiwlvRQnSEIAWz+f2oIuB4l6f4WD1FGe4ussWN+2LugDCpMq4L/B4b4JwGcylScGOqij93Okfy9IUFRQb9jp9s0+Cljv6FC4ClgBK2CFq4AVcJcBK4yOAlbpVcCa2g5YQfClb5qOEdY0CnGQAAAAAElFTkSuQmCC"
+                  alt="图片" style="width: 100px;"><span>航子</span><span>(主任医师)</span></span></span><span
+              style="text-align: left;">﻿</span></span></span><span style="text-align: left;">时间：</span><span
+          data-slate-node="element" data-sona-element="date" id="uESubSsp7uKWepWXatngQ4" title=""
+          data-code="DE06.00.282.00"><span class="" style="margin: 0px;"><span style="text-align: left;">2025-02-06
+              15:49</span><span contenteditable="false" class="cf-emr-date-picker-wrapper">
+              <div class="ant-picker ant-picker-small ant-picker-disabled">
+                <div class="ant-picker-input"><input disabled="" readonly="" placeholder="Select date"
+                    title="2025-02-06 15:49" size="18" autocomplete="off" value="2025-02-06 15:49"><span
+                    class="ant-picker-suffix"><span role="img" aria-label="calendar"
+                      class="anticon anticon-calendar"><svg viewBox="64 64 896 896" focusable="false"
+                        data-icon="calendar" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z">
+                        </path>
+                      </svg></span></span></div>
+              </div>
+            </span></span></span><span style="text-align: left;">﻿</span>
+      </div>
+      <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+        <span style="text-align: left;">﻿</span>
+      </div>
+      <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+        <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="patient-signature"
+          id="uo1_iG1PBXxuhMjAA29P5n" title=""><span class="" style="display: inline; margin: 0px;"><span
+              contenteditable="false">患方签名：</span>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<span
+              style="color: white; position: relative;"><span>dBN6TL9Na</span>
+              <div
+                style="position: absolute; top: 0px; left: 0px; background-color: white; display: inline-block; height: 100%; width: 100%;">
+              </div>
+            </span><span contenteditable="false" style="margin-left: 8px;">患方签名时间</span></span></span><span
+          style="text-align: left;">﻿</span>
+      </div>
+      <div data-slate-node="element" data-sona-element="paragraph" style="text-align: left; word-break: break-all;">
+        <span style="text-align: left;">﻿</span><span data-slate-node="element" data-sona-element="radio"
+          id="u-Ns1Njd-K-DerjLumowHF" title="" data-required="false"><span class="" style="margin: 0px;"><span
+              class="cf-emr-radio-group cf-emr-radio-hidden" contenteditable="false"><span
+                class="cf-emr-radio-list-wrap"><span style="margin-left: 0px;"><input id="u3CdSvRWeJR7n4wgrbdFTC"
+                    type="radio" name="uMQR19SOVfWmgtXpvRjA3x-0" value="患者本人"
+                    style="position: relative; top: 2px;"><span style="">患者本人</span></span><span
+                  style="margin-left: 4px;"><input id="uBVFojYTNARXJFAh9A1_w8" type="radio"
+                    name="uMQR19SOVfWmgtXpvRjA3x-1" value="配偶" style="position: relative; top: 2px;"><span
+                    style="">配偶</span></span><span style="margin-left: 4px;"><input id="uG-SV5P51EPkbU70GMGj0K"
+                    type="radio" name="uMQR19SOVfWmgtXpvRjA3x-2" value="子女" style="position: relative; top: 2px;"><span
+                    style="">子女</span></span><span style="margin-left: 4px;"><input id="uTn7o47WLLi5qKu2v7tjcY"
+                    type="radio" name="uMQR19SOVfWmgtXpvRjA3x-3" value="其他近亲属同事"
+                    style="position: relative; top: 2px;"><span style="">其他近亲属同事</span></span><span
+                  style="margin-left: 4px;"><input id="uLXQxW8Rc5CMCZ43kGFEQI" type="radio"
+                    name="uMQR19SOVfWmgtXpvRjA3x-4" value="父母" style="position: relative; top: 2px;"><span
+                    style="">父母</span></span><span style="margin-left: 4px;"><input id="uEqSXf06u71aHnjvK-mKYE"
+                    type="radio" name="uMQR19SOVfWmgtXpvRjA3x-5" value="朋友" style="position: relative; top: 2px;"><span
+                    style="">朋友</span></span><span style="margin-left: 4px;"><input id="u6a0IFfXAunU-UyMtxcUrx"
+                    type="radio" name="uMQR19SOVfWmgtXpvRjA3x-6" value="其他" style="position: relative; top: 2px;"><span
+                    style="">其他</span></span></span></span><span style="text-align: left;">﻿</span></span></span><span
+          style="text-align: left;">﻿</span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
