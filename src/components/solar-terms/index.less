@@ -1,0 +1,192 @@
+.solar-terms-calculator {
+  padding: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+
+  .main-card {
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+
+    .title {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #1890ff;
+
+      .anticon {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .date-card {
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
+
+    .result-section {
+      .term-info {
+        .season-tag {
+          font-size: 14px;
+          padding: 4px 12px;
+          border-radius: 16px;
+        }
+
+        .term-name {
+          margin: 0;
+          color: #262626;
+        }
+
+        .term-description {
+          margin: 16px 0 8px 0;
+          color: #595959;
+
+          .anticon {
+            margin-right: 8px;
+            color: #1890ff;
+          }
+        }
+
+        .term-details {
+          margin: 12px 0;
+          padding: 8px 12px;
+          background: #f6f8fa;
+          border-radius: 6px;
+          border-left: 3px solid #1890ff;
+        }
+
+        .days-info {
+          margin-top: 12px;
+          padding: 8px 12px;
+          background: #fff7e6;
+          border-radius: 6px;
+          border-left: 3px solid #fa8c16;
+        }
+      }
+    }
+  }
+
+  .terms-overview-card {
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
+
+    .terms-by-season {
+      .season-section {
+        margin-bottom: 24px;
+
+        .season-title {
+          margin-bottom: 12px;
+
+          &.season-春季 {
+            color: #52c41a;
+          }
+
+          &.season-夏季 {
+            color: #ff4d4f;
+          }
+
+          &.season-秋季 {
+            color: #fa8c16;
+          }
+
+          &.season-冬季 {
+            color: #1890ff;
+          }
+        }
+
+        .term-item {
+          padding: 12px;
+          border: 1px solid #f0f0f0;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-align: center;
+          background: #fafafa;
+
+          &:hover {
+            border-color: #1890ff;
+            box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+            transform: translateY(-2px);
+            background: #fff;
+          }
+
+          .term-name {
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 4px;
+          }
+
+          .term-longitude {
+            font-size: 12px;
+            color: #8c8c8c;
+          }
+        }
+      }
+    }
+  }
+
+  .info-card {
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
+    background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+  }
+
+  // 响应式设计
+  @media (max-width: 768px) {
+    padding: 16px;
+
+    .main-card {
+      .title {
+        font-size: 20px;
+      }
+    }
+
+    .terms-by-season {
+      .season-section {
+        .term-item {
+          padding: 8px;
+
+          .term-name {
+            font-size: 12px;
+          }
+
+          .term-longitude {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  // 年份节气表格样式
+  .ant-table {
+    .ant-table-thead > tr > th {
+      background: #fafafa;
+      font-weight: 600;
+    }
+
+    .ant-table-tbody > tr:hover > td {
+      background: #f0f9ff;
+    }
+
+    .ant-btn-link {
+      color: #1890ff;
+      font-weight: 500;
+
+      &:hover {
+        color: #40a9ff;
+      }
+    }
+  }
+
+  // 按钮样式
+  .ant-btn-primary {
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(24, 144, 255, 0.2);
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(24, 144, 255, 0.3);
+      transform: translateY(-1px);
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 
 import "./index.less";
 import { useDebounceFn } from "ahooks";
-import { Input, Tooltip } from "@cffe/h2o-design";
+import { Input } from "antd";
 import { OPTIONS } from "./utils";
 
 const COM_MAP: Record<string, (props: { value: any; onChange: (val: any) => void; onDelete: () => void; disabled: boolean }) => ReactElement> = {

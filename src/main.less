@@ -1,5 +1,5 @@
 @import "~antd/dist/antd.css";
-@import "~@cffe/h2o-design/lib/style/index.less";
+// @import "~@cffe/h2o-design/lib/style/index.less";
 
 //  MARK: 本地  scrollbar的样式被 hyper-form的样式覆盖，内部拿到的变量是undefined，导致颜色没有，本地需要单独设置样式
 ::-webkit-scrollbar {
@@ -8,4 +8,61 @@
 ::-webkit-scrollbar-thumb {
   background-color: #71cf9d;
   border-radius: 6px;
+}
+
+// 自定义菜单样式 - 支持中英文双行显示
+.custom-menu {
+  .ant-menu-item,
+  .ant-menu-submenu-title {
+    height: auto !important;
+    line-height: 1.2 !important;
+    padding: 8px 16px !important;
+
+    // 菜单项内容容器
+    .ant-menu-title-content {
+      line-height: 1.2 !important;
+    }
+  }
+
+  // 子菜单样式
+  .ant-menu-submenu {
+    .ant-menu-submenu-title {
+      height: auto !important;
+      line-height: 1.2 !important;
+      padding: 8px 16px !important;
+    }
+  }
+
+  // 下拉菜单样式
+  .ant-menu-submenu-popup {
+    .ant-menu-item {
+      height: auto !important;
+      line-height: 1.2 !important;
+      padding: 8px 16px !important;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // 选中状态样式优化
+  .ant-menu-item-selected,
+  .ant-menu-submenu-selected {
+    .ant-menu-title-content {
+      div:first-child {
+        color: #1890ff !important;
+        font-weight: 600 !important;
+      }
+    }
+  }
+
+  // 悬停状态样式
+  .ant-menu-item:hover,
+  .ant-menu-submenu-title:hover {
+    .ant-menu-title-content {
+      div:first-child {
+        color: #1890ff !important;
+      }
+    }
+  }
 }

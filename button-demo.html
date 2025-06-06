@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>按钮点击示例</title>
+  <style>
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="fingerBtn" class="button">获取指纹</button>
+  <button id="signBtn" class="button">获取签名图片</button>
+  <button id="errorBtn" class="button">获取错误</button>
+  <button id="initBtn" class="button">初始化</button>
+  <!-- 用于显示签名图片的img标签 -->
+  <div style="margin-top:20px;">
+    <img id="signImg" style="max-width:400px;max-height:200px;display:none;border:1px solid #ccc;" alt="签名图片" />
+  </div>
+  <!-- 用于显示指纹图片的img标签 -->
+  <div style="margin-top:20px;">
+    <img id="fingerImg" style="max-width:400px;max-height:200px;display:none;border:1px solid #ccc;" alt="指纹图片" />
+  </div>
+
+
+  <script>
+    // 获取按钮元素
+    const fingerBtn = document.getElementById('fingerBtn');
+    const signBtn = document.getElementById('signBtn');
+    const errorBtn = document.getElementById('errorBtn');
+    const initBtn = document.getElementById('initBtn');
+    const signImg = document.getElementById('signImg');
+    const fingerImg = document.getElementById('fingerImg');
+
+    // 通用XHR请求函数
+    function xhr (params, url) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.send(params);
+      return xhr;
+    }
+    const url = 'https://127.0.0.1:7688/TGCtrlApi';
+    /**
+     * 指纹按钮点击回调
+     */
+    function handleFingerClick () {
+      // 构造获取指纹的请求体
+      const data = JSON.stringify({
+        serverName: '{852DF1B5-D228-4F74-B1D7-29AE6FC249C0}',
+        funcName: 'GetFingerData',
+        param: JSON.stringify({ Devtype: 100 })
+      });
+      const fingerprintXhr = xhr(data, url);
+      fingerprintXhr.onreadystatechange = function () {
+        if (fingerprintXhr.readyState === 4 && fingerprintXhr.status === 200) {
+          const fingerprintResult = JSON.parse(fingerprintXhr.responseText);
+          console.log('指纹接口返回：', fingerprintResult);
+          // 判断返回是否有图片数据
+          if (fingerprintResult.result) {
+            // result 字段是字符串，需要再解析一次
+            let resultObj = {};
+            try {
+              resultObj = JSON.parse(fingerprintResult.result);
+            } catch (e) {
+              alert('指纹图片数据解析失败');
+              fingerImg.style.display = 'none';
+              return;
+            }
+            if (resultObj.fingerImage) {
+              // 设置img标签src为base64图片
+              fingerImg.src = 'data:image/png;base64,' + resultObj.fingerImage;
+              fingerImg.style.display = 'block';
+            } else {
+              fingerImg.style.display = 'none';
+              alert('未获取到指纹图片数据');
+            }
+          } else {
+            fingerImg.style.display = 'none';
+            alert('未获取到指纹图片数据');
+          }
+        }
+      };
+    }
+
+    /**
+     * 签名图片按钮点击回调
+     */
+    function handleSignClick () {
+      // 构造获取签名图片的请求体（假设接口名为GetSignImageData，param参数可根据实际调整）
+      const data = JSON.stringify({
+        serverName: '{852DF1B5-D228-4F74-B1D7-29AE6FC249C0}',
+        funcName: 'GetHandWriteImage',
+        param: JSON.stringify({ Devtype: 100 })
+      });
+      const signXhr = xhr(data, url);
+      signXhr.onreadystatechange = function () {
+        if (signXhr.readyState === 4 && signXhr.status === 200) {
+          const signResult = JSON.parse(signXhr.responseText);
+          console.log('签名图片接口返回：', signResult);
+          // 判断返回是否有图片数据
+          if (signResult.result) {
+            // 设置img标签src为base64图片
+            signImg.src = 'data:image/png;base64,' + signResult.result;
+            signImg.style.display = 'block';
+          } else {
+            signImg.style.display = 'none';
+            alert('未获取到签名图片数据');
+          }
+        }
+      };
+    }
+
+    /**
+     * 获取错误按钮点击回调
+     */
+    function handleErrorClick () {
+      // 构造获取错误的请求体
+      const data = JSON.stringify({
+        serverName: '{852DF1B5-D228-4F74-B1D7-29AE6FC249C0}',
+        funcName: 'GetLastError',
+        param: JSON.stringify({})
+      });
+      const errorXhr = xhr(data, url);
+      errorXhr.onreadystatechange = function () {
+        if (errorXhr.readyState === 4 && errorXhr.status === 200) {
+          const errorResult = JSON.parse(errorXhr.responseText);
+          console.log('获取错误接口返回：', errorResult);
+          alert('获取错误接口返回：' + errorXhr.responseText);
+        }
+      };
+    }
+
+    /**
+     * 初始化按钮点击回调
+     */
+    function handleInitClick () {
+      // 构造初始化的请求体，参数和接口文档一致
+      const data = JSON.stringify({
+        serverName: '{852DF1B5-D228-4F74-B1D7-29AE6FC249C0}',
+        funcName: 'InitMedicalPluginConfig',
+        param: JSON.stringify({
+          fingerDevType: 100,
+          handWriteDevType: 100,
+          loginTryTime: 5,
+          certFilter: ''
+        })
+      });
+      const initXhr = xhr(data, url);
+      initXhr.onreadystatechange = function () {
+        if (initXhr.readyState === 4 && initXhr.status === 200) {
+          const initResult = JSON.parse(initXhr.responseText);
+          console.log('初始化接口返回：', initResult);
+          alert('初始化接口返回：' + initXhr.responseText);
+        }
+      };
+    }
+
+    // 绑定事件
+    fingerBtn.addEventListener('click', handleFingerClick);
+    signBtn.addEventListener('click', handleSignClick);
+    errorBtn.addEventListener('click', handleErrorClick);
+    initBtn.addEventListener('click', handleInitClick);
+  </script>
+</body>
+
+</html>

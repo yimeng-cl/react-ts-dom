@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# React TypeScript Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个基于 React + TypeScript + Vite 的前端演示项目，展示了各种常用组件和功能实现。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 18.2.0
+- TypeScript 5.2.2
+- Vite 5.2.0
+- Ant Design 4.24.9
+- React Router DOM 7.6.0
 
-## Expanding the ESLint configuration
+## 主要功能
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **基础组件**: 表单、表格、布局、菜单等 UI 组件演示
+- **实用工具**: Monaco 编辑器、JSON 差异对比、无限滚动
+- **娱乐功能**: 贪吃蛇游戏
+- **计算工具**: 二十四节气计算器
+- **其他功能**: 打印、文本提取、装饰器演示
 
-- Configure the top-level `parserOptions` property like this:
+## 快速开始
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+# 安装依赖
+yarn
+
+# 启动开发服务器
+yarn dev
+
+# 构建生产版本
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## 项目结构
+
+# React + TypeScript + Vite

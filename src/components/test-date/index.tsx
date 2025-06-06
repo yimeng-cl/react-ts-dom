@@ -1,6 +1,6 @@
 import { DatePicker } from "antd";
 import React, { useState } from "react";
-
+import dayjs from "dayjs";
 const { RangePicker } = DatePicker;
 
 export default function TestDate() {
@@ -9,7 +9,7 @@ export default function TestDate() {
     <RangePicker
       allowClear={false}
       showTime
-      defaultValue={[dayjs(hospitalizedDate), dayjs()]}
+      defaultValue={[dayjs(), dayjs()]}
       value={rangeTime}
       onChange={dates => {
         console.log(dates);
