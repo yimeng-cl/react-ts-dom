@@ -32,6 +32,8 @@ const ComponentsMonacoEditor = lazy(() => import("./components/monaco-editor"));
 const ComponentsSnakeGame = lazy(() => import("./components/snake-game"));
 const ComponentsExtractText = lazy(() => import("./components/extract-text"));
 const ComponentsSolarTerms = lazy(() => import("./components/solar-terms"));
+const ComponentsCssStyleTest = lazy(() => import("./components/css-style-test"));
+const AsyncValidatorTest = lazy(() => import("./components/async-validator-test"));
 
 const routes: RouteObject[] = [
   {
@@ -199,6 +201,22 @@ const routes: RouteObject[] = [
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             <ComponentsSolarTerms />
+          </Suspense>
+        ),
+      },
+      {
+        path: "css-style-test",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <ComponentsCssStyleTest />
+          </Suspense>
+        ),
+      },
+      {
+        path: "async-validator-test",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <AsyncValidatorTest />
           </Suspense>
         ),
       },

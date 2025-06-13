@@ -16,6 +16,7 @@ const menuItems = [
       { key: "monaco-editor", label: "monaco-editor" },
       { key: "snake-game", label: "snake-game" },
       { key: "extract-text", label: "extract-text" },
+      { key: "css-style-test", label: "CSS样式测试" },
     ],
   },
   {

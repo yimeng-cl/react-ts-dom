@@ -148,13 +148,18 @@ const App: React.FC = () => {
 
   return (
     <ConfigProvider locale={zhCN}>
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ height: "100vh", overflow: "hidden" }}>
         <Header
           style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1000,
             height: "auto",
             minHeight: "64px",
             padding: "0 24px",
-            backgroundColor: "transparent",
+            backgroundColor: "white",
             boxShadow: "0 1px 4px rgba(0,21,41,.08)",
           }}
         >
@@ -173,7 +178,16 @@ const App: React.FC = () => {
             className='custom-menu'
           />
         </Header>
-        <Content style={{ padding: 24 }}>{element}</Content>
+        <Content
+          style={{
+            marginTop: "64px",
+            height: "calc(100vh - 64px)",
+            overflow: "auto",
+            padding: 0,
+          }}
+        >
+          {element}
+        </Content>
       </Layout>
     </ConfigProvider>
   );
